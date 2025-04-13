@@ -7,11 +7,11 @@ from datasets import load_dataset
 import os
 
 # ========== CHECKPOINT CONFIG ==========
-checkpoint_dir = "./biblegpt_v2"
+checkpoint_dir = "./gpt_v2"
 os.makedirs(checkpoint_dir, exist_ok=True)
 
 # ========== LOAD MODEL ==========
-model_path = "./biblegpt"
+model_path = "./local_gpt2"
 tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 model = GPT2LMHeadModel.from_pretrained(model_path)
 model.config.loss_type = "ForCausalLMLoss"  # Fix warning

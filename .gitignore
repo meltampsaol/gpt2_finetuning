@@ -1,4 +1,5 @@
 
 .venv
 /.venv/
-
+/local_gpt2/
+/gpt_v2/
