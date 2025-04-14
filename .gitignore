@@ -6,4 +6,6 @@
 /bart_finetuned/
 /distilbert_finetuned/
 /my_dataset/
+bart_finetuned
+distilbert_finetuned
 
