@@ -47,16 +47,16 @@ tokenized_train = train_ds.map(
     remove_columns=train_ds.column_names
 )
 
-# ========== UPDATED DATA COLLATOR ==========
+# ========== DATA COLLATOR ==========
 data_collator = DataCollatorForLanguageModeling(
     tokenizer=tokenizer,
-    mlm=False  # No masked language modeling since we're working on causal language modeling
+    mlm=False  # No masked language modeling
 )
 
 # ========== TRAINING SETUP ==========
 training_args = TrainingArguments(
     output_dir=checkpoint_dir,
-    per_device_train_batch_size=1,
+    per_device_train_batch_size=4,
     num_train_epochs=1,
     learning_rate=5e-5,
     weight_decay=0.01,
@@ -74,38 +74,33 @@ training_args = TrainingArguments(
     disable_tqdm=False
 )
 
-# Check for existing checkpoint and adjust step counter
-checkpoints = [d for d in os.listdir(checkpoint_dir) 
-              if d.startswith("checkpoint") and os.path.isdir(os.path.join(checkpoint_dir, d))]
+# ========== CHECKPOINT LOGIC ==========
+checkpoints = [
+    d for d in os.listdir(checkpoint_dir) 
+    if d.startswith("checkpoint") and os.path.isdir(os.path.join(checkpoint_dir, d))
+]
 
 if checkpoints:
     checkpoint_numbers = [int(d.split("-")[-1]) for d in checkpoints]
     latest_checkpoint = f"checkpoint-{max(checkpoint_numbers)}"
     resume_checkpoint = os.path.join(checkpoint_dir, latest_checkpoint)
-    training_args.resume_from_checkpoint = resume_checkpoint
-    
-    # Adjust the step counter
-    last_step = max(checkpoint_numbers)
-    print(f"Resuming from step {last_step}")
+    print(f"Resuming from latest checkpoint: {resume_checkpoint}")
 else:
-    print("Starting new training")
-    last_step = 0
+    print("Starting training from scratch")
+    resume_checkpoint = None
 
-# Skip processed dataset rows
-if last_step > 0:
-    tokenized_train = tokenized_train.select(range(last_step, len(tokenized_train)))
-
+# ========== TRAINER ==========
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_train,
+    train_dataset=tokenized_train,  # Pass the full dataset, avoid row selection
     data_collator=data_collator,
 )
 
-# ========== TRAINING WITH SAFEGUARD ==========
+# ========== TRAINING ==========
 try:
     print("Starting training...")
-    trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+    trainer.train(resume_from_checkpoint=resume_checkpoint)
 except KeyboardInterrupt:
     print("\nManual interruption - saving current state...")
     trainer.save_model(checkpoint_dir)
