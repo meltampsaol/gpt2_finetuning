@@ -3,10 +3,8 @@
 /.venv/
 /local_gpt2/
 /gpt_v2/
-/bart_finetuned/
-/bart_finetuned/checkpoint-10/
-/distilbert_finetuned/
+/bart-finetuned/
+/distilbert-finetuned/
 /my_dataset/
-bart_finetuned
-distilbert_finetuned
+
 
