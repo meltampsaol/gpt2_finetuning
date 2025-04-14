@@ -4,6 +4,7 @@
 /local_gpt2/
 /gpt_v2/
 /bart_finetuned/
+/bart_finetuned/checkpoint-10/
 /distilbert_finetuned/
 /my_dataset/
 bart_finetuned
