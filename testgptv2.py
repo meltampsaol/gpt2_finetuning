@@ -4,7 +4,7 @@ import requests
 import re
 
 # Load model
-model_path = "./gpt_v2/checkpoint-5050"  # Path to your fine-tuned model checkpoint directory
+model_path = "D:/LLMProjects2025/GPT2/gpt_v3"  # Path to your fine-tuned model checkpoint directory
 tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
 model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True)
 tokenizer.pad_token = tokenizer.eos_token
@@ -118,15 +118,17 @@ while True:
     inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True, max_length=512)
 
     output = model.generate(
-        input_ids=inputs["input_ids"],
-        attention_mask=inputs["attention_mask"],
-        max_new_tokens=80,
-        temperature=0.7,
-        top_p=0.95,
-        do_sample=True,
-        repetition_penalty=1.15,
-        pad_token_id=tokenizer.eos_token_id,
+    input_ids=inputs["input_ids"],
+    attention_mask=inputs["attention_mask"],
+    max_new_tokens=150,
+    temperature=0.9,
+    repetition_penalty=1.2,
+    do_sample=True,
+    top_k=50,
+    pad_token_id=tokenizer.eos_token_id,
     )
+
+
 
     full_text = tokenizer.decode(output[0], skip_special_tokens=True)
     cleaned_full_text = clean_generated_text(full_text)
