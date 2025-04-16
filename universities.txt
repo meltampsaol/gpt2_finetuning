@@ -1,0 +1,21 @@
+University: Harvard University
+Country: USA
+Founded: 1636
+Student Population: 20,000
+Fact: Harvard is the oldest higher education institution in the United States.
+
+===
+
+University: University of Cambridge
+Country: UK
+Founded: 1209
+Student Population: 24,500
+Fact: Cambridge has produced over 120 Nobel laureates.
+
+===
+
+University: University of Tokyo
+Country: Japan
+Founded: 1877
+Student Population: 28,000
+Fact: The University of Tokyo is Japan's first national university.

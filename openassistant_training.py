@@ -56,14 +56,14 @@ data_collator = DataCollatorForLanguageModeling(
 # ========== TRAINING SETUP ==========
 training_args = TrainingArguments(
     output_dir=checkpoint_dir,
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=1,
     num_train_epochs=1,
     learning_rate=5e-5,
     weight_decay=0.01,
     logging_dir="./logs",
     logging_steps=5,
     fp16=False,
-    no_cuda=True,  # Explicitly disable CUDA for CPU-only training
+    use_cpu=True,  # Explicitly disable CUDA for CPU-only training
     report_to="none",
     save_strategy="steps",
     save_steps=50,  # Save every 50 steps
