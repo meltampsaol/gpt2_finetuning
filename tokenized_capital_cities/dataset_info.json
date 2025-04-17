@@ -1,0 +1,90 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "task1146_country_capital",
+  "dataset_size": 106626,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/Lots-of-LoRAs/task1146_country_capital@f2f98b8ce9a51220a7e9e0e00d21efb84cdb22ee/data/train-00000-of-00001.parquet": {
+      "num_bytes": 19003,
+      "checksum": null
+    },
+    "hf://datasets/Lots-of-LoRAs/task1146_country_capital@f2f98b8ce9a51220a7e9e0e00d21efb84cdb22ee/data/test-00000-of-00001.parquet": {
+      "num_bytes": 6466,
+      "checksum": null
+    },
+    "hf://datasets/Lots-of-LoRAs/task1146_country_capital@f2f98b8ce9a51220a7e9e0e00d21efb84cdb22ee/data/valid-00000-of-00001.parquet": {
+      "num_bytes": 6406,
+      "checksum": null
+    }
+  },
+  "download_size": 31875,
+  "features": {
+    "input": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "output": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "labels": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 138501,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 84989,
+      "num_examples": 184,
+      "dataset_name": "task1146_country_capital"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 11036,
+      "num_examples": 24,
+      "dataset_name": "task1146_country_capital"
+    },
+    "valid": {
+      "name": "valid",
+      "num_bytes": 10601,
+      "num_examples": 23,
+      "dataset_name": "task1146_country_capital"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
